@@ -1,0 +1,25 @@
+*{
+    background-color: yellowgreen;
+
+}
+
+body {
+    font-size: 20px;
+}
+
+table,
+th,
+tr,
+td {
+    font-size: 20px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+header{
+    font-size: 35px;
+}
+
+#header{
+    margin: 40px;
+}
