@@ -9,6 +9,11 @@
   - [Solution](#solution)
     - [Logical Reasoning](#logical-reasoning)
     - [Mathematical Verification](#mathematical-verification)
+- [Question 2. 100 Doors Puzzle](#question-2-100-doors-puzzle)
+  - [Solution](#solution-1)
+    - [The Rule: Who Toggles Which Door?](#the-rule-who-toggles-which-door)
+    - [The Math: Perfect Squares are Oddballs](#the-math-perfect-squares-are-oddballs)
+    - [The Final Count](#the-final-count)
 
 
 # Question 1. Airplane Seating Puzzle
@@ -60,3 +65,83 @@ Total Probability = $1/3 + 1/6 = 2/6 + 1/6 = 3/6 = \mathbf{1/2}$.
 
 This confirms the logic holds true, regardless of the number of passengers. ✈️
 
+
+# Question 2. 100 Doors Puzzle
+
+There are 100 closed doors, numbered 1 to 100.
+100 people walk past the doors one after another:
+- Person 1 toggles (opens if closed, closes if open) every door.
+- Person 2 toggles every 2nd door (doors 2, 4, 6, ... ).
+- Person 3 toggles every 3rd door (doors 3, 6, 9, ... ).
+-
+-
+- Person 100 toggles every 100th door (only door 100).
+
+All doors start closed.
+
+After all 100 people have passed, which doors remain open, and how many of them are open?
+
+
+The doors that remain open are those with numbers that are **perfect squares**. There will be **10** open doors.
+
+Here’s the step-by-step solution to this classic puzzle. 💡
+
+***
+
+## Solution
+
+The final state of any door depends entirely on **how many times it was toggled**.
+* All doors start closed.
+* Toggled once: Closed → **Open**
+* Toggled twice: Open → **Closed**
+* Toggled three times: Closed → **Open**
+
+A door will be left open only if it is toggled an **odd number of times**.
+
+***
+
+### The Rule: Who Toggles Which Door?
+
+The number of times a specific door is toggled is determined by the puzzle's rule: "Person `n` toggles every `n`-th door."
+
+Let's rephrase this from a door's perspective: Door #`D` is toggled by Person #`P` only if `D` is a multiple of `P`. This is the same as saying `P` must be a **factor** (or divisor) of `D`.
+
+Therefore, the total number of times a door is toggled is equal to the **total number of factors** its number has.
+
+Combining these insights: **A door will remain open only if its number has an odd number of factors.**
+
+***
+
+### The Math: Perfect Squares are Oddballs
+
+So, which numbers have an odd number of factors? Let's look at a few.
+
+* **Factors of 10:** 1, 10, 2, 5 (4 factors - an even number)
+* **Factors of 12:** 1, 12, 2, 6, 3, 4 (6 factors - an even number)
+
+Factors usually come in pairs. For the number 12, the pairs are (1, 12), (2, 6), and (3, 4). This pairing system almost always results in an even number of factors.
+
+The only way a number can have an odd number of factors is if one of the pairs is not a pair at all, but a single number repeated. This happens when the number is a **perfect square**.
+
+* **Factors of 9 (which is $3^2$):** 1, 9, **3** (3 factors - an odd number). The "pair" for 3 would be $9/3 = 3$, so it's only counted once.
+* **Factors of 16 (which is $4^2$):** 1, 16, 2, 8, **4** (5 factors - an odd number).
+
+So, the doors that remain open are those whose numbers are perfect squares. ✅
+
+***
+
+### The Final Count
+
+We just need to find all the perfect squares between 1 and 100.
+1.  $1^2 = \mathbf{1}$
+2.  $2^2 = \mathbf{4}$
+3.  $3^2 = \mathbf{9}$
+4.  $4^2 = \mathbf{16}$
+5.  $5^2 = \mathbf{25}$
+6.  $6^2 = \mathbf{36}$
+7.  $7^2 = \mathbf{49}$
+8.  $8^2 = \mathbf{64}$
+9.  $9^2 = \mathbf{81}$
+10. $10^2 = \mathbf{100}$
+
+In total, there are **10 doors** that will remain open. 🚪
