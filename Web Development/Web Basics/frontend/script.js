@@ -1,79 +1,59 @@
-// // hoisting example
+var productsList = [];
+var x = 20;
 
-// // function checkValues(val) {
-// //     console.log(x);
-
-// //     // val would be initialized only if x is even as then only we enter if condition
-// //     if (val % 2 === 0) {
-// //         var x = "Even"; //will move to the top of the function scope but not initialized yet until this if block is executed
-// //         console.log(x);
-        
-// //     } else {
-// //         console.log("Odd"); 
-// //     }
-    
-// //     console.log(x);
-// // }
-
-// // checkValues(25);
-
-
-function foo() {
-    console.log("Hello, World!");
-    let thing = document.getElementById("hehe");
-    if (!thing) {
-        console.error("Element with id 'hehe' not found.");
-        return;
-    }
-
-    thing.style.backgroundColor = "rgba(120, 220, 100, 0.9)";
-    thing.style.borderRadius = "100px";
-    thing.style.border = "0px";
+function loadProducts(renderProductListsWithData) {
+  setTimeout(() => {
+    productsList = productsListFromServer;
+    renderProductListsWithData();
+  }, 500);
 }
 
-var listo = [];
+const foo = (arg1) => {
+  console.log(arg1);
+};
 
-function loadProducts(callback) {
-    setTimeout(() => {
-        listo = productListFromServer; // Load products from the server 
-        callback(); // ✅ CALL the callback after listo is loaded
-    }, 1000);
+function foo1(arg1) {
+  console.log(arg1);
 }
 
 function renderProducts() {
-    if (listo.length === 0) {
-        console.error("Product list is empty.");
-        return;
-    }
+  // Fetch the data from server
+  // Conert the data into html and render it on UI
 
-    let thingy = document.getElementById("data");
-    if (!thingy) {
-        console.error("Element with id 'data' not found.");
-        return;
+  function renderProductListsWithData() {
+    if (productsList.length === 0) {
+      document.getElementById("data").innerHTML = "Loading data from server...";
+      return;
     }
-
-    thingy.innerHTML = `
-        <table>
+    document.getElementById("data").innerHTML = `
+    <table>
             <thead>
                 <tr>
-                    <th>S.No</th>               
-                    <th>Name</th>
-                    <th>Value</th>
+                    <th>Sr. No.</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
                     <th>Description</th>
-                </tr> 
+                </tr>
             </thead>
             <tbody>
-                ${listo.map((item, idx) => `
+                ${productsList
+                  .map((product, index) => {
+                    return `
                     <tr>
-                        <td>${idx + 1}</td>
-                        <td>${item.name}</td>
-                        <td>${item.value}</td>
-                        <td>${item.description}</td>
+                        <td>${index + 1}</td>
+                        <td>${product.name}</td>
+                        <td>${product.price}</td>
+                        <td>${product.description}</td>
                     </tr>
-                `).join('')}
+                    `;
+                  })
+                  .join("")}
             </tbody>
         </table>`;
+  }
+
+  loadProducts(renderProductListsWithData);
+  renderProductListsWithData();
 }
 
-foo();
-loadProducts(renderProducts); // ✅ Pass actual function that renders after listo is ready
+renderProducts();

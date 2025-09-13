@@ -1,85 +1,76 @@
-//Function vs Block scope
- //Function scope created by a function
- //block scope are created by {} (eg if,else,for,etc)
+// Functional vs Block
 
- //Hoisting - move the declaration to the top of the scope
- //Hoisting applies to var, function , let , const, class, import
+// Function scope created by a function
+// Block scope created by {} (e.g., if, else, for, while, do)
 
-//Hoisting of var and let
+// Hoisting - move the declaration to the top of the scope (function or block)
+// Hoisting applies to var, function, let, const, class, import
 
-// var hoisting is moving the var declaration to the top of the innermost function
-// let hoisting is moving the let declaration to the top of the innermost block scope 
+// Hositing of var and let
+// var hoisting - move the var declaration to the top of the innermost function
+// let hoisting - move the let declaration to the top of the innermost block scope
 
-function foo(){
-    //var will be hoisted here 
-    console.log("var x before is : ",x); //undefined 
-    console.log("let y before is: ",y) //reference error , y not defined yet
-    if(true){
-        //let will be hoisted to the top of the function
-        var x = 2;
-        let y = 3;
-    }
+function foo() {
+  // var will be hoisted to the top of the function
+  console.log("var x before is: ", x); // undefined
+  console.log("let y before is: ", y); // ReferenceError: y is not defined
+  if (true) {
+    // let will be hoisted to the top of the innermost scope
+    var x = 2;
+    let y = 3;
+  }
 }
 
-function foo(){
-    if(true){
-        var x = 2;
-        let y = 3;
-    }
-    console.log("var x after is " ,x); //2
-    console.log("let y after is ",y); //reference y is not defined
-}
- 
-function foo(){
-    // var x hoisted here
-    if(true){
-        // let y hoisted here 
-        console.log("var x after is: ",x)//undefined
-        console.log("let y after is: ",y)//referencederror : cannot access y before initialisation
-        var x = 2;
-        let y = 3;
-    }
-    console.log("var x after is ",x);
-    console.log("let y after is ",y);
+function foo() {
+  if (true) {
+    var x = 2;
+    let y = 3;
+  }
+  console.log("var x after is: ", x); // 2
+  console.log("let y after is: ", y); // ReferenceError: y is not defined
 }
 
-function foo(){
-    // var x hoisted here
-    if(true){
-        // let y hoisted here 
-        var x = 2;
-        let y = 3;
-        console.log("var x after is: ",x)//2
-        console.log("let y after is: ",y)//3
-
-    }
-    console.log("var x after is ",x);//2
-    console.log("let y after is ",y);// reference error : y not defined
+function foo() {
+  if (true) {
+    console.log("var x after is: ", x); // undefined
+    console.log("let y after is: ", y); // ReferenceError: Cannot access 'y' before initialization
+    var x = 2;
+    let y = 3;
+  }
+  console.log("var x after is: ", x);
+  console.log("let y after is: ", y);
 }
 
-//Function hoisting
-fooF();
-function fooF(){
-    console.log("Function called");
+function foo() {
+  if (true) {
+    var x = 2;
+    let y = 3;
+    console.log("var x after is: ", x); // 2
+    console.log("let y after is: ", y); // 3
+  }
+  console.log("var x after is: ", x); // 2
+  console.log("let y after is: ", y); // ReferenceError: y is not defined
 }
 
-fooVar();
-var fooVar =  function(){
-    console.log("Function called");
+// FUnctions hoisting
+fooF(); // Function foo called
+function fooF() {
+  console.log("Function foo called");
 }
 
-//here let not defined as no block scope
-fooLet();
-let fooLet = function(){
-    console.log("Function called")
-}
+fooTV(); // Uncaught TypeError: fooTV is not a function at <anonymous>:1:1
+var fooTV = function() {
+  console.log("Function foo called");
+};
 
-function foo(){
-    fooL(); //here fooL defined but not initialised 
-    let fooL = function(){
-        console.log("Function called fool")
-    };
-}
+fooL(); // VM1360:2 Uncaught ReferenceError: Cannot access 'fooL' before initialization
+let fooL = function() {
+  console.log("Function foo called");
+};
 
-//Whenever we execute the code in browser console, its behavior is different
-//In node re , the code is executed as a part of a module
+function foo() {
+  fooL(); // VM1360:2 Uncaught ReferenceError: Cannot access 'fooL' before initialization
+  let fooL = function() {
+    console.log("Function foo called");
+  };
+}

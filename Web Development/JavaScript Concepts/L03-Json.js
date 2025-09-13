@@ -1,17 +1,20 @@
-//JSON stands for Javacript Object Notation
+// JSON
+var studentObject1 = {
+  firstName: "fName",
+  lastName: "lname",
+  rollno: 1236544,
+  collegeName: "Chitkara University",
+};
 
-//for eg
-let student = {
-    name : "name1",
-    age : 20
-}
+// XML
+{/* <student>
+  <firstName>fName</firstName>
+  <lastName>lname</lastName>
+  <rollno>1236544</rollno>
+  <collegeName>Chitkara University</collegeName>
+</student> */}
 
-console.log(student);
+JSON.stringify(studentObject1);
 
-//saving the object in the local storage
-console.log(JSON.stringify(student));
-
-//converting json string back to obj
-JSON.parse(localStorage.getItem(student));
-
-//when data is transferred over the network layer, it is sent as a string
+var studentObject1String = JSON.stringify(studentObject1);
+JSON.parse(studentObject1String);

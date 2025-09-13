@@ -1,41 +1,52 @@
-// tradational way
-function fool(param1){
-    console.log("Hello");
+// Multiple ways to declare functions
+var name = "some name";
+
+// Function declaration - traditional apporach 1
+function foo1(param1) {
+  console.log("Inside foo1 functionwith params as: ", param1);
 }
 
-//functional expression
-var foo2 = function(param1){
-    console.log("Hello");
-}
+// Function expression
+var foo2 = function (param1) {
+  console.log("Inside foo3 functionwith params as: ", param1);
+};
 
-//functional expression with arrow function
+// Function expression - Arrow function
 var foo3 = (param1) => {
-    console.log("Inside foo3");
-}
+  console.log("Inside foo3 functionwith params as: ", param1);
+};
 
-//anonymous function
+// Anonymous function
 (param1) => {
-    console.log("Anonymous function");
-}
+  console.log("Inside foo4 functionwith params as: ", param1);
+};
 
-//self invoking
+// Self invoking functions
 ((param1) => {
-    console.log("Inside self invoking");
+  console.log("Inside foo4 functionwith params as: ", param1);
 })();
 
-//generator function - allows to return multiple values
-function* scoreGen(initialScore) {
-    let currentScore = initialScore; //returns an generator object iterator
-    while(currentScore < 5) {
-        currentScore += 1;
-        yield currentScore;   // we dont use return statement
-    }
+// Generator function
+function* scoreGenerator(initialScore = 0) {
+  let currentScore = initialScore;
+  while (currentScore < 2) {
+    // Yielding the current score and incrementing it
+    yield currentScore;
+    currentScore++;
+  }
+  return currentScore; // This will be returned when the generator is done
 }
+// Using the generator function
+const scoreGen = scoreGenerator();
+// Getting the first score
+scoreGen.next(); // {value: 0, done: false}
+scoreGen.next(); // {value: 1, done: false}
+scoreGen.next(); // {value: 1, done: true}
+scoreGen.next(); // {value: undefined, done: true}
 
-const currentScore = scoreGen(0);
-console.log(currentScore.next());
-
-//We pass arguements when method call, and we declare parameters when we define/declare a function
-
-
-
+// Function declaration - When declaring - define function paramters (not arguments)
+function foo1(param1) {
+  console.log("Inside foo1 functionwith params as: ", param1);
+}
+// When calling any function - Arguments are passed (and not parameters)
+foo2(arg1);

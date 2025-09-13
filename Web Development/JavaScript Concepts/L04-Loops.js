@@ -1,55 +1,76 @@
-var arr1 = [9,8,7,6,5];
+// for loop
+// for loop with break
+// for loop with continue
+// for in loop with continue
+// for in loop for objects
+// for of loop for Arrays
+// forEach: does not support continue and break. But continue can be acheived thorugh return
+// map
 
-//for loop with break and continue
-for(let i = 0; i < 5 ; i++){
-    if(i == 3){
-        break;
-    }
-    if(i == 2 ){
-        continue;
-    }
-    console.log(arr1[i] + " ");
+var numArray1 = [9, 8, 7, 6, 5];
+
+// for loop
+for (let i = 0; i < numArray1.length; i++) {
+  console.log(`The value is : ${i}`);
 }
 
-//for of loop - returns value
-for(let item of arr1){
-    console.log(`value of item is ${item}`);
+// for loop with break
+for (let i = 0; i < numArray1.length; i++) {
+  if (i === 3) break;
+  console.log(`The value is : ${i}`);
 }
 
-//for in loop - return key
-for(let item in arr1){
-    console.log(`the value is: ${item}`);
+// for loop with continue
+for (let i = 0; i < numArray1.length; i++) {
+  if (i === 3) continue;
+  console.log(`The value is : ${i}`);
 }
 
+// for in loop with continue
+for (let i in numArray1) {
+  if (numArray1[i] === 7) continue;
+  console.log(`The value is : ${numArray1[i]}`);
+}
 
-//for each is used to perform some task on the items in array
+var studentObject1 = {
+  firstName: "fName",
+  lastName: "lname",
+  rollno: 1236544,
+  collegeName: "Chitkara University",
+};
 
-// forEach()
+// for in loop for objects
+for (let i in studentObject1) {
+  console.log(`The value is : ${studentObject1[i]}`);
+}
 
-// Purpose: To loop through an array and perform a side effect (e.g., logging, updating DOM, mutating something).
+// for of loop for Arrays
+for (let numArrayItem of numArray1) {
+  if (numArrayItem === 7) continue;
+  console.log(`The value is : ${numArrayItem}`);
+}
 
-// Return value: Always returns undefined.
+var actualFunction = function (value) {
+  console.log(`The value is: ${value}`);
+};
 
-// When to use: When you just want to do something with each element but don’t need a new array.
-
-const numbers = [1, 2, 3];
-
-numbers.forEach(num => {
-  console.log(num * 2); // Logs: 2, 4, 6
+// numArray1.forEach(callbackFunction(value));
+numArray1.forEach(function (value, index, numArray1) {
+  if (value === "8") return;
+  console.log(`The value is: ${value}`);
+  //   console.log(`The index is: ${index}`);
+  //   console.log(`The array is: ${numArray1}`);
 });
 
-const result = numbers.forEach(num => num * 2);
-console.log(result); // undefined ❌
+// numArray1.forEach(callbackFunction(value));
+numArray1.forEach(actualFunction(value));
 
-//MAP
-// map()
+// calback anonymous function
+numArray1.forEach((value) => {
+  console.log(`The value is: ${value}`);
+});
 
-// Purpose: To transform each element of an array and return a new array.
-
-// Return value: A new array with the same length as the original, with each element transformed.
-
-// When to use: When you want to create a new array based on the old one.
-// const numbers = [1, 2, 3];
-
-// const doubled = numbers.map(num => num * 2);
-// console.log(doubled); // [2, 4, 6] ✅
+numArray1.map((value) => {
+  if (value === 8) {
+  } else return value * 2;
+});
