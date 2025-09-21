@@ -17,6 +17,12 @@
     - [The Strategy (Agreed upon in the dark room)](#the-strategy-agreed-upon-in-the-dark-room)
     - [How an Individual Decides](#how-an-individual-decides)
     - [Why This Strategy Always Works](#why-this-strategy-always-works)
+- [Question 4. Top 3 of 25 Horses](#question-4-top-3-of-25-horses)
+  - [Step-by-Step Solution](#step-by-step-solution)
+    - [Step 1: Initial Group Races (5 Races)](#step-1-initial-group-races-5-races)
+    - [Step 2: The Winners' Race (1 Race)](#step-2-the-winners-race-1-race)
+    - [Step 3: The Final Race for 2nd and 3rd (1 Race)](#step-3-the-final-race-for-2nd-and-3rd-1-race)
+  - [Summary of Races](#summary-of-races)
 
 
 # Question 1. Airplane Seating Puzzle
@@ -203,3 +209,83 @@ This is the brilliant part of the puzzle. The strategy works perfectly regardles
     * A person wearing a **white cap** will see an even number of other black caps. Following the logic, they will *incorrectly* deduce they are wearing black and go to the "black" side.
     * **Result:** Every single person goes to the *opposite* side of where they should be. The black-capped people all gather on the "white" side, and the white-capped people all gather on the "black" side. This is still a **perfect segregation** into two pure-colored groups! ✅
 
+
+# Question 4. Top 3 of 25 Horses
+
+At a race track consisting of 5 tracks, 25 horses are to compete. At a time only 5 can take part. How many races required to find the 1st best, 2nd best, 3rd best horse.
+
+
+## Step-by-Step Solution
+
+Here's the most efficient method to find the top three horses.
+
+### Step 1: Initial Group Races (5 Races)
+First, you need to get a baseline ranking for all 25 horses. Divide the horses into 5 groups (A, B, C, D, E) of 5 horses each and race them.
+
+* **Race 1:** Group A -> Winners are A1 > A2 > A3 > A4 > A5
+* **Race 2:** Group B -> Winners are B1 > B2 > B3 > B4 > B5
+* **Race 3:** Group C -> Winners are C1 > C2 > C3 > C4 > C5
+* **Race 4:** Group D -> Winners are D1 > D2 > D3 > D4 > D5
+* **Race 5:** Group E -> Winners are E1 > E2 > E3 > E4 > E5
+
+After these 5 races, we have identified the fastest horse within each group.
+
+***
+
+### Step 2: The Winners' Race (1 Race)
+Now, take the winner from each of the first 5 races (A1, B1, C1, D1, E1) and race them against each other. This will be our **6th race**.
+
+Let's assume the result of this race is: **A1 > B1 > C1 > D1 > E1**.
+
+
+
+From this single race, we can make a huge deduction:
+* **The 1st Fastest Horse:** The winner of this race, **A1**, is definitively the fastest horse overall. No other horse can be faster. 🥳
+
+***
+
+### Step 3: The Final Race for 2nd and 3rd (1 Race)
+This is the most critical step. We need to find the horses that could *potentially* be 2nd or 3rd fastest overall.
+
+Let's analyze what we know from the 6th race (A1 > B1 > C1 > D1 > E1):
+
+* **Eliminate the slow horses:** D1 and E1 finished 4th and 5th in the winners' race. This means they cannot be in the top 3 overall. Furthermore, every horse in their original groups (D2, D3... and E2, E3...) is slower than them, so we can eliminate all horses from **groups D and E**.
+* **Identify the contenders:** Who is left that could possibly be 2nd or 3rd?
+    1.  The horses that finished 2nd and 3rd in the winners' race: **B1** and **C1**. They lost to A1 but could still be 2nd or 3rd.
+    2.  The horses that were beaten by the overall winner (A1) in its initial race: **A2** and **A3**. It's possible A2 is faster than B1 and C1.
+    3.  The horse that was beaten by the 2nd place contender (B1) in its initial race: **B2**. It's possible that A1 is a super horse and B2 is faster than C1.
+
+Let's refine this list. Can C2 or A3 be the 2nd fastest horse? No.
+* C2 is slower than C1. C1 is slower than B1. B1 is slower than A1. So, C2 is already slower than at least three horses (C1, B1, A1) and cannot be 2nd or 3rd.
+* By the same logic, A3 is slower than A2 and A1. A2 is potentially 2nd or 3rd, but A3 cannot be.
+
+This leaves us with a final pool of 5 contenders for the 2nd and 3rd spots:
+* **A2:** The 2nd horse from the champion's group.
+* **B1:** The 2nd place horse from the winners' race.
+* **B2:** The 2nd horse from B1's group.
+* **C1:** The 3rd place horse from the winners' race.
+
+Wait, let's re-evaluate. My previous elimination was too aggressive. The key is to find any horse that has been beaten by at most *one* other confirmed faster horse. Let's restart the contenders list for 2nd and 3rd, knowing **A1** is 1st.
+
+A contender for 2nd place is any horse that was only beaten by A1.
+* **A2** (lost to A1 in Race 1)
+* **B1** (lost to A1 in Race 6)
+
+A contender for 3rd place is any horse beaten by A1, or by a potential 2nd place horse.
+* **A3** (lost to A1, A2 in Race 1)
+* **B2** (lost to B1 in Race 2)
+* **C1** (lost to A1, B1 in Race 6)
+
+Combining these candidates gives us the 5 horses for our final race: **A2, A3, B1, B2, and C1**.
+
+Now, we run our **7th race** with these 5 horses.
+
+* **The 2nd Fastest Horse:** The winner of this 7th race is the 2nd fastest horse overall. 🥈
+* **The 3rd Fastest Horse:** The horse that finishes second in this 7th race is the 3rd fastest horse overall. 🥉
+
+## Summary of Races
+* **Races 1-5:** Initial heats to categorize all 25 horses.
+* **Race 6:** Race of the winners to find the #1 fastest horse.
+* **Race 7:** Race of the potential #2 and #3 horses to determine the final rankings.
+
+**Total = 7 races.**
