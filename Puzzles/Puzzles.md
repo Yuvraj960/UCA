@@ -23,6 +23,14 @@
     - [Step 2: The Winners' Race (1 Race)](#step-2-the-winners-race-1-race)
     - [Step 3: The Final Race for 2nd and 3rd (1 Race)](#step-3-the-final-race-for-2nd-and-3rd-1-race)
   - [Summary of Races](#summary-of-races)
+- [Question 5. Second Best Player in a Tournament](#question-5-second-best-player-in-a-tournament)
+  - [Q1: Finding the Winner](#q1-finding-the-winner)
+    - [The Simple Logic (The Losers Method)](#the-simple-logic-the-losers-method)
+    - [The Mathematical Method (Summing Rounds)](#the-mathematical-method-summing-rounds)
+  - [Q2: Finding the Second-Best Player](#q2-finding-the-second-best-player)
+    - [The Critical Insight](#the-critical-insight)
+    - [The Two-Step Process](#the-two-step-process)
+  - [The Final Calculation](#the-final-calculation)
 
 
 # Question 1. Airplane Seating Puzzle
@@ -289,3 +297,71 @@ Now, we run our **7th race** with these 5 horses.
 * **Race 7:** Race of the potential #2 and #3 horses to determine the final rankings.
 
 **Total = 7 races.**
+
+
+# Question 5. Second Best Player in a Tournament
+
+In a single-elimination (knockout) tournament with $2^n$ players, every match results in one winner and one loser, with the loser being eliminated.
+1.  What is the total number of matches required to determine the tournament champion?
+2.  What is the minimum number of matches required to find the **true second-best player**? (Note: The player who loses in the final match is not necessarily the second-best overall).
+
+---
+
+## Q1: Finding the Winner
+
+It takes **$2^n - 1$** matches to find the winner.
+
+There are two ways to think about this, one simple and one more mathematical.
+
+### The Simple Logic (The Losers Method)
+This is the most elegant way to solve it. In any tournament, there can be only one winner. If there are $2^n$ players, this means there must be $2^n - 1$ losers. Since each match produces exactly one loser, you must play **$2^n - 1$** matches to produce $2^n - 1$ losers. It's that simple!
+
+### The Mathematical Method (Summing Rounds)
+You can also add up the matches in each round:
+* **Round 1:** $2^n$ players form $2^{n-1}$ matches.
+* **Round 2:** $2^{n-1}$ players form $2^{n-2}$ matches.
+* ...
+* **Final Round (Round n):** 2 players form 1 match.
+
+The total is the sum of a geometric series: $2^{n-1} + 2^{n-2} + ... + 2^1 + 1 = 2^n - 1$.
+
+**Example (for 8 players, where $n=3$):**
+The total matches are $8 - 1 = \textbf{7}$. (This matches your calculation of 4+2+1=7).
+
+---
+
+## Q2: Finding the Second-Best Player
+
+It takes **$2^n + n - 2$** matches to find the true second-best player.
+
+This is trickier because the player who loses in the final isn't guaranteed to be the second best. The true second-best player could have been eliminated by the champion in any round.
+
+
+
+### The Critical Insight
+The only player who could have possibly defeated the true second-best player is the **champion**. Therefore, the second-best player must be one of the players who lost directly to the champion during the tournament.
+
+### The Two-Step Process
+
+1.  **Step 1: Find the Champion.**
+    As we found in Q1, this requires **$2^n - 1$** matches. This step also reveals the champion's path to victory and all the opponents they defeated along the way.
+
+2.  **Step 2: Find the Best of the Champion's Opponents.**
+    In a tournament of $2^n$ players, there are $n$ rounds. The champion had to play and win one match in each round, meaning the champion defeated exactly **$n$ players**. These $n$ players are the only candidates for the title of "second-best."
+
+    To find the best player among this group of $n$ candidates, we hold a separate knockout tournament for them. Using our logic from Q1, finding the winner among $n$ players requires **$n - 1$** matches.
+
+## The Final Calculation
+
+The total number of matches is the sum of the matches from both steps:
+
+Total Matches = (Matches to find champion) + (Matches to find best of the rest)
+Total Matches = $(2^n - 1) + (n - 1)$
+Total Matches = $\mathbf{2^n + n - 2}$
+
+**Example (for 8 players, where $n=3$):**
+1.  **Find Champion:** It takes $2^3 - 1 = 7$ matches. The champion defeated 3 opponents (one in each of the 3 rounds).
+2.  **Find Second-Best:** We take those 3 defeated opponents and hold a mini-tournament. To find the best of 3 players, it takes $3 - 1 = 2$ matches.
+3.  **Total:** $7 + 2 = \textbf{9}$ matches.
+
+Using the formula: $2^3 + 3 - 2 = 8 + 3 - 2 = 9$. It works perfectly!
