@@ -1,5 +1,3 @@
-<!-- Create an index in .md format by which when users click some topic it redirects/scrolls to bottom to the heading -->
-
 # Puzzles
 ## Index
 
@@ -14,6 +12,11 @@
     - [The Rule: Who Toggles Which Door?](#the-rule-who-toggles-which-door)
     - [The Math: Perfect Squares are Oddballs](#the-math-perfect-squares-are-oddballs)
     - [The Final Count](#the-final-count)
+- [Question 3. Black and White Caps](#question-3-black-and-white-caps)
+    - [The Solution: The Parity Strategy](#the-solution-the-parity-strategy)
+    - [The Strategy (Agreed upon in the dark room)](#the-strategy-agreed-upon-in-the-dark-room)
+    - [How an Individual Decides](#how-an-individual-decides)
+    - [Why This Strategy Always Works](#why-this-strategy-always-works)
 
 
 # Question 1. Airplane Seating Puzzle
@@ -145,3 +148,58 @@ We just need to find all the perfect squares between 1 and 100.
 10. $10^2 = \mathbf{100}$
 
 In total, there are **10 doors** that will remain open. 🚪
+
+
+# Question 3. Black and White Caps
+
+A group of $N$ people is in a room. They can strategize before the test begins. Each person will be assigned a black or white cap at random. They cannot see their own cap, but they can see the caps of all $N-1$ other people. After the caps are on and they are in a lit room, they cannot communicate in any way. Their goal is to simultaneously move to different sides of the room to form two distinct groups: one of all black-capped people and one of all white-capped people.
+
+---
+
+### The Solution: The Parity Strategy
+
+The solution hinges on the group making a shared, arbitrary assumption **beforehand**. The most common and effective strategy is based on **parity** (whether a number is odd or even).
+
+### The Strategy (Agreed upon in the dark room)
+
+The group must agree on two things:
+
+1.  **Designated Sides:** They designate one side of the room for the "Black Caps" group and the opposite side for the "White Caps" group.
+2.  **The Core Assumption:** Everyone agrees to act based on the following shared assumption: **"The total number of black caps in the entire room is an ODD number."**
+
+This assumption might be false in reality, but that doesn't matter, as long as everyone uses it for their logic.
+
+---
+
+### How an Individual Decides
+
+Once they are in the lit room, each person counts the number of black caps they can see on everyone else. Let's say you are one of the people in the room.
+
+* **Scenario A: You see an EVEN number of black caps.**
+    * Your Logic: "I see an even number of black caps. Our group's assumption is that the total number of black caps is **odd**. If my own cap were white, the total number of black caps would remain even, which contradicts our assumption. Therefore, my cap **must be black** to make the total odd."
+    * Your Action: You walk to the designated "Black Caps" side of the room.
+
+* **Scenario B: You see an ODD number of black caps.**
+    * Your Logic: "I see an odd number of black caps. Our group's assumption is that the total number of black caps is **odd**. If my own cap were black, the total would become even, contradicting our assumption. Therefore, my cap **must be white** to keep the total odd."
+    * Your Action: You walk to the designated "White Caps" side of the room.
+
+Since every person follows this exact same logic, they can all make a decision and move simultaneously.
+
+
+
+---
+
+### Why This Strategy Always Works
+
+This is the brilliant part of the puzzle. The strategy works perfectly regardless of whether the actual number of black caps is odd or even.
+
+* **Case 1: The actual number of black caps IS odd.**
+    * A person wearing a **black cap** will see an even number of other black caps. Following the logic, they correctly deduce they are wearing black and go to the "black" side.
+    * A person wearing a **white cap** will see an odd number of other black caps. Following the logic, they correctly deduce they are wearing white and go to the "white" side.
+    * **Result:** Perfect segregation. Everyone goes to the correct side. ✅
+
+* **Case 2: The actual number of black caps IS even.**
+    * A person wearing a **black cap** will see an odd number of other black caps. Following the logic, they will *incorrectly* deduce they are wearing white and go to the "white" side.
+    * A person wearing a **white cap** will see an even number of other black caps. Following the logic, they will *incorrectly* deduce they are wearing black and go to the "black" side.
+    * **Result:** Every single person goes to the *opposite* side of where they should be. The black-capped people all gather on the "white" side, and the white-capped people all gather on the "black" side. This is still a **perfect segregation** into two pure-colored groups! ✅
+
