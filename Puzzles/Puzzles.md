@@ -31,6 +31,13 @@
     - [The Critical Insight](#the-critical-insight)
     - [The Two-Step Process](#the-two-step-process)
   - [The Final Calculation](#the-final-calculation)
+- [Question 6. 1000 Barrels of Wine](#question-6-1000-barrels-of-wine)
+  - [The Solution: Using Binary Power](#the-solution-using-binary-power)
+    - [1. Label Everything](#1-label-everything)
+    - [2. Assign Prisoners to "Bits"](#2-assign-prisoners-to-bits)
+    - [3. Administer the Wine](#3-administer-the-wine)
+    - [4. Read the Result](#4-read-the-result)
+  - [**A Worked Example**](#a-worked-example)
 
 
 # Question 1. Airplane Seating Puzzle
@@ -365,3 +372,66 @@ Total Matches = $\mathbf{2^n + n - 2}$
 3.  **Total:** $7 + 2 = \textbf{9}$ matches.
 
 Using the formula: $2^3 + 3 - 2 = 8 + 3 - 2 = 9$. It works perfectly!
+
+
+# Question 6. 1000 Barrels of Wine
+
+A king has 1000 barrels of wine for a party that is one week away. An assassin poisons exactly one of the barrels. The poison has a delayed effect: anyone who drinks it will die precisely one week later. The king has 10 prisoners whom he can use to test the wine.
+
+How can the king devise a test using the prisoners to identify the single poisoned barrel within one week, ensuring the other 999 barrels are safe for the party?
+
+---
+
+## The Solution: Using Binary Power
+
+The key is to realize that with 10 prisoners, you have 10 "bits" of information. At the end of the week, each prisoner will either be alive or dead, a binary state (0 or 1). With 10 bits, you can represent $2^{10} = 1024$ unique numbers, which is more than enough to identify one of the 1000 barrels.
+
+Here is the step-by-step strategy:
+
+### 1. Label Everything
+First, the king must label the barrels of wine from **1 to 1000**. He must also label the prisoners from **1 to 10**.
+
+### 2. Assign Prisoners to "Bits"
+Each prisoner represents a specific position in a 10-digit binary number.
+* **Prisoner #1** represents the 1's place (the rightmost bit, $2^0$)
+* **Prisoner #2** represents the 2's place ($2^1$)
+* **Prisoner #3** represents the 4's place ($2^2$)
+* ...and so on, up to...
+* **Prisoner #10** represents the 512's place ($2^9$)
+
+
+
+### 3. Administer the Wine
+This is the ingenious part. For each barrel, the king's servants convert its label number into its 10-bit binary equivalent. Then, a prisoner is given a tiny sip from that barrel **if and only if their corresponding bit is a '1'**.
+
+Let's look at a few examples:
+* **Barrel #1:** Binary is `0000000001`. Only the 1st bit is a '1'. So, **only Prisoner #1** drinks from Barrel #1.
+* **Barrel #6:** Binary is `0000000110`. The 2nd and 3rd bits are '1'. So, **Prisoner #2 and Prisoner #3** both drink from Barrel #6.
+* **Barrel #789:** Binary is `1100010101`. The 1st, 3rd, 5th, 9th, and 10th bits are '1'. So, **Prisoners #1, #3, #5, #9, and #10** all drink from Barrel #789.
+
+This process is repeated for all 1000 barrels. Each prisoner will have a cup containing a mixture of sips from hundreds of different barrels.
+
+### 4. Read the Result
+After one week, the king lines up the surviving prisoners in order from #10 down to #1. He then creates a new 10-bit binary number based on the outcome:
+* If a prisoner is **dead**, he writes a **1** in their bit position.
+* If a prisoner is **alive**, he writes a **0** in their bit position.
+
+The resulting binary number, when converted back to decimal, is the number of the poisoned barrel!
+
+## **A Worked Example**
+Let's say after one week, the king observes the following:
+* Prisoners #1, #4, and #8 are **dead**.
+* All other prisoners are **alive**.
+
+He would construct the binary number like this (from Prisoner #10 down to #1):
+
+| Prisoner | 10  | 9   | 8   | 7   | 6   | 5   | 4   | 3   | 2   | 1   |
+| :------- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Status   | A   | A   | D   | A   | A   | A   | D   | A   | A   | D   |
+| **Bit** | **0** | **0** | **1** | **0** | **0** | **0** | **1** | **0** | **0** | **1** |
+
+The binary result is `0010001001`.
+Converting this back to decimal:
+$2^7 + 2^3 + 2^0 = 128 + 8 + 1 = 137$.
+
+The king can declare with certainty that **Barrel #137** was the poisoned one. This works because Barrel #137 is the *only* barrel that was sampled by *exactly* that combination of prisoners. 🧪
