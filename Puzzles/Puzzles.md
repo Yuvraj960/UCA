@@ -42,11 +42,10 @@
   - [**The Solution**](#the-solution)
     - [The First Level of Deduction (Eliminating a Scenario)](#the-first-level-of-deduction-eliminating-a-scenario)
     - [The Smartest Applicant's Deduction](#the-smartest-applicants-deduction)
+- [Question 8. 10 Bags of Coins](#question-8-10-bags-of-coins)
   - [**The Solution**](#the-solution-1)
-    - [Weighing #1](#weighing-1)
-      - [**Scenario A: The Scale Balances**](#scenario-a-the-scale-balances)
-      - [**Scenario B: The Left Side is Heavier ({1, 2, 3, 4} \> {5, 6, 7, 8})**](#scenario-b-the-left-side-is-heavier-1-2-3-4--5-6-7-8)
-      - [**Scenario C: The Right Side is Heavier ({1, 2, 3, 4} \< {5, 6, 7, 8})**](#scenario-c-the-right-side-is-heavier-1-2-3-4--5-6-7-8)
+    - [The Strategy](#the-strategy)
+    - [How It Works](#how-it-works)
 
 
 # Question 1. Airplane Seating Puzzle
@@ -454,55 +453,34 @@ But Applicant A **did not** raise his hand. A's silence is the final clue.
 Therefore, C confidently concludes: **"My cap must be white."** 🏆
 
 
+# Question 8. 10 Bags of Coins
 
-
-There are 12 coins, all identical, except one which is either heavier or lighter. You have a balance scale and can use it only 3 times. How can you find the odd coin and determine whether it is heavier or lighter?
+You have 10 bags, each filled with numerous identical coins. All coins weigh 10 grams, except for those in one "defective" bag, where each coin weighs 10.1 grams. You are given a precise digital weighing scale, but you are only allowed to use it **once**. How can you determine which bag contains the heavier coins?
 
 ## **The Solution**
 
-First, **label the coins 1 through 12**.
+You can identify the heavy bag by taking a different number of coins from each bag, weighing them all together, and interpreting the excess weight.
 
-The entire strategy hinges on the first weighing. You must divide the coins into three groups of four.
-* **Group 1:** {1, 2, 3, 4}
-* **Group 2:** {5, 6, 7, 8}
-* **Group 3:** {9, 10, 11, 12}
+### The Strategy
 
-### Weighing #1
-Place **Group 1** on the left pan and **Group 2** on the right pan. This leaves Group 3 off the scale. There are three and only three possible outcomes. We will follow each one to its conclusion.
+1.  **Label the Bags:** First, label the bags from 1 to 10.
 
-#### **Scenario A: The Scale Balances**
-* **Deduction:** If the scale balances, all eight coins on it ({1, 2, 3, 4, 5, 6, 7, 8}) are genuine. The odd coin must be in Group 3: {9, 10, 11, 12}. You have two weighings left.
-* **Weighing #2 (Scenario A):** Weigh **{9, 10, 11}** against three known genuine coins, like **{1, 2, 3}**.
-    * **Outcome A.1: It balances again.**
-        * **Deduction:** Since {9, 10, 11} are the same weight as genuine coins, the odd one must be **#12**.
-        * **Weighing #3:** Weigh coin **#12** against a genuine coin **#1**. If #12 goes down, it's **heavy**. If it goes up, it's **light**. **Problem solved.**
-    * **Outcome A.2: {9, 10, 11} is heavier than {1, 2, 3}.**
-        * **Deduction:** The odd coin is one of {9, 10, 11}, and it is **heavy**.
-        * **Weighing #3:** Weigh coin **#9** against coin **#10**. If one goes down, that is the heavy coin. If they balance, **#11** is the heavy coin. **Problem solved.**
-    * **Outcome A.3: {9, 10, 11} is lighter than {1, 2, 3}.**
-        * **Deduction:** The odd coin is one of {9, 10, 11}, and it is **light**.
-        * **Weighing #3:** Weigh coin **#9** against coin **#10**. If one goes up, that is the light coin. If they balance, **#11** is the light coin. **Problem solved.**
+2.  **Take a Sample:** Take a specific number of coins from each bag that corresponds to its label:
+    * From **Bag #1**, take **1** coin.
+    * From **Bag #2**, take **2** coins.
+    * From **Bag #3**, take **3** coins.
+    * ...and so on, until you take **10** coins from **Bag #10**.
 
-#### **Scenario B: The Left Side is Heavier ({1, 2, 3, 4} > {5, 6, 7, 8})**
-* **Deduction:** This means one of two things:
-    1.  One of the coins in {1, 2, 3, 4} is **heavy**.
-    2.  One of the coins in {5, 6, 7, 8} is **light**.
-    * We also know that coins {9, 10, 11, 12} are all genuine.
-* **Weighing #2 (Scenario B):** This is the most brilliant step. We mix the groups. Weigh **{1, 2, 5}** against **{3, 6, 9}**.
-    * **Outcome B.1: The scale balances.**
-        * **Deduction:** The odd coin was not on the scale. The remaining suspects are {4} (which would be heavy) or {7, 8} (which would be light).
-        * **Weighing #3:** Weigh **#7** against **#8**. If they balance, then **#4** is the odd coin, and it is **heavy**. If they don't balance, whichever one goes up is the **light** coin. **Problem solved.**
-    * **Outcome B.2: The left side is heavier ({1, 2, 5} > {3, 6, 9}).**
-        * **Deduction:** This result could only happen if either **#1 or #2 is heavy**, or if **#6 is light**. (Think about it: if #5 were light, the left side would go up. If #3 were heavy, the right side would go down).
-        * **Weighing #3:** Weigh **#1** against **#2**. If they balance, then **#6** is the odd coin, and it is **light**. If one coin goes down, that is the **heavy** coin. **Problem solved.**
-    * **Outcome B.3: The right side is heavier ({1, 2, 5} < {3, 6, 9}).**
-        * **Deduction:** This result could only happen if **#3 is heavy** or **#5 is light**.
-        * **Weighing #3:** Weigh **#3** against a genuine coin **#9**. If it goes down, **#3** is the **heavy** coin. If it balances, then **#5** must be the odd coin, and it is **light**. **Problem solved.**
+3.  **Weigh the Coins:** Place all the collected coins on the digital weighing scale at once. This is your single weighing. The total number of coins on the scale is $1 + 2 + ... + 10 = 55$ coins.
 
-#### **Scenario C: The Right Side is Heavier ({1, 2, 3, 4} < {5, 6, 7, 8})**
-* **Deduction:** This scenario is perfectly symmetrical to Scenario B. The odd coin is either in {1, 2, 3, 4} and is **light**, or in {5, 6, 7, 8} and is **heavy**.
-* The exact same moves from Scenario B will solve the puzzle; the deductions are just reversed.
-    * **Let's follow one example path:** You perform the same second weighing: **{1, 2, 5}** vs **{3, 6, 9}**.
-    * Imagine the right side goes down again ({1, 2, 5} < {3, 6, 9}).
-        * **Deduction:** Remember, our suspects for this scenario are {1,2,3,4} (light) or {5,6,7,8} (heavy). This result could only happen if **#5 is heavy** or if **#1 or #2 is light**.
-        * **Weighing #3:** Weigh **#1** against **#2**. If they balance, **#5** is the odd coin and is **heavy**. If one coin goes up, that is the **light** coin. **Problem solved.**
+### How It Works
+
+The magic is in the final decimal point of the measurement.
+
+* **Calculate the "Perfect" Weight:** If all the coins were normal (10 grams), the total weight of the 55 coins would be $55 \times 10 = 550$ grams.
+
+* **Interpret the Result:** Since one of the bags contains coins that are each 0.1 grams heavier, the actual weight will be slightly more than 550 grams. The amount of excess weight will tell you exactly which bag is the defective one.
+    * If the weight is **550.1g**, the excess is 0.1g. This means there was **one** heavy coin on the scale, which must have come from **Bag #1**.
+    * If the weight is **550.2g**, the excess is 0.2g. This means there were **two** heavy coins, which must have come from **Bag #2**.
+    * If the weight is **550.7g**, the excess is 0.7g. This means there were **seven** heavy coins, which must have come from **Bag #7**.
+    * If the weight is **551.0g** (an excess of 1.0g), this means there were **ten** heavy coins, which must have come from **Bag #10**.
