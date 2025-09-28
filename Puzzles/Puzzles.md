@@ -46,6 +46,12 @@
   - [**The Solution**](#the-solution-1)
     - [The Strategy](#the-strategy)
     - [How It Works](#how-it-works)
+- [Question 9. The 12 Coins Problem](#question-9-the-12-coins-problem)
+  - [**The Solution**](#the-solution-2)
+    - [Weighing #1](#weighing-1)
+      - [**Scenario A: The Scale Balances**](#scenario-a-the-scale-balances)
+      - [**Scenario B: The Left Side is Heavier ({1, 2, 3, 4} \> {5, 6, 7, 8})**](#scenario-b-the-left-side-is-heavier-1-2-3-4--5-6-7-8)
+      - [**Scenario C: The Right Side is Heavier ({1, 2, 3, 4} \< {5, 6, 7, 8})**](#scenario-c-the-right-side-is-heavier-1-2-3-4--5-6-7-8)
 
 
 # Question 1. Airplane Seating Puzzle
@@ -484,3 +490,57 @@ The magic is in the final decimal point of the measurement.
     * If the weight is **550.2g**, the excess is 0.2g. This means there were **two** heavy coins, which must have come from **Bag #2**.
     * If the weight is **550.7g**, the excess is 0.7g. This means there were **seven** heavy coins, which must have come from **Bag #7**.
     * If the weight is **551.0g** (an excess of 1.0g), this means there were **ten** heavy coins, which must have come from **Bag #10**.
+
+
+# Question 9. The 12 Coins Problem
+
+There are 12 coins, all identical, except one which is either heavier or lighter. You have a balance scale and can use it only 3 times. How can you find the odd coin and determine whether it is heavier or lighter?
+
+## **The Solution**
+
+First, **label the coins 1 through 12**.
+
+The entire strategy hinges on the first weighing. You must divide the coins into three groups of four.
+* **Group 1:** {1, 2, 3, 4}
+* **Group 2:** {5, 6, 7, 8}
+* **Group 3:** {9, 10, 11, 12}
+
+### Weighing #1
+Place **Group 1** on the left pan and **Group 2** on the right pan. This leaves Group 3 off the scale. There are three and only three possible outcomes. We will follow each one to its conclusion.
+
+#### **Scenario A: The Scale Balances**
+* **Deduction:** If the scale balances, all eight coins on it ({1, 2, 3, 4, 5, 6, 7, 8}) are genuine. The odd coin must be in Group 3: {9, 10, 11, 12}. You have two weighings left.
+* **Weighing #2 (Scenario A):** Weigh **{9, 10, 11}** against three known genuine coins, like **{1, 2, 3}**.
+    * **Outcome A.1: It balances again.**
+        * **Deduction:** Since {9, 10, 11} are the same weight as genuine coins, the odd one must be **#12**.
+        * **Weighing #3:** Weigh coin **#12** against a genuine coin **#1**. If #12 goes down, it's **heavy**. If it goes up, it's **light**. **Problem solved.**
+    * **Outcome A.2: {9, 10, 11} is heavier than {1, 2, 3}.**
+        * **Deduction:** The odd coin is one of {9, 10, 11}, and it is **heavy**.
+        * **Weighing #3:** Weigh coin **#9** against coin **#10**. If one goes down, that is the heavy coin. If they balance, **#11** is the heavy coin. **Problem solved.**
+    * **Outcome A.3: {9, 10, 11} is lighter than {1, 2, 3}.**
+        * **Deduction:** The odd coin is one of {9, 10, 11}, and it is **light**.
+        * **Weighing #3:** Weigh coin **#9** against coin **#10**. If one goes up, that is the light coin. If they balance, **#11** is the light coin. **Problem solved.**
+
+#### **Scenario B: The Left Side is Heavier ({1, 2, 3, 4} > {5, 6, 7, 8})**
+* **Deduction:** This means one of two things:
+    1.  One of the coins in {1, 2, 3, 4} is **heavy**.
+    2.  One of the coins in {5, 6, 7, 8} is **light**.
+    * We also know that coins {9, 10, 11, 12} are all genuine.
+* **Weighing #2 (Scenario B):** This is the most brilliant step. We mix the groups. Weigh **{1, 2, 5}** against **{3, 6, 9}**.
+    * **Outcome B.1: The scale balances.**
+        * **Deduction:** The odd coin was not on the scale. The remaining suspects are {4} (which would be heavy) or {7, 8} (which would be light).
+        * **Weighing #3:** Weigh **#7** against **#8**. If they balance, then **#4** is the odd coin, and it is **heavy**. If they don't balance, whichever one goes up is the **light** coin. **Problem solved.**
+    * **Outcome B.2: The left side is heavier ({1, 2, 5} > {3, 6, 9}).**
+        * **Deduction:** This result could only happen if either **#1 or #2 is heavy**, or if **#6 is light**. (Think about it: if #5 were light, the left side would go up. If #3 were heavy, the right side would go down).
+        * **Weighing #3:** Weigh **#1** against **#2**. If they balance, then **#6** is the odd coin, and it is **light**. If one coin goes down, that is the **heavy** coin. **Problem solved.**
+    * **Outcome B.3: The right side is heavier ({1, 2, 5} < {3, 6, 9}).**
+        * **Deduction:** This result could only happen if **#3 is heavy** or **#5 is light**.
+        * **Weighing #3:** Weigh **#3** against a genuine coin **#9**. If it goes down, **#3** is the **heavy** coin. If it balances, then **#5** must be the odd coin, and it is **light**. **Problem solved.**
+
+#### **Scenario C: The Right Side is Heavier ({1, 2, 3, 4} < {5, 6, 7, 8})**
+* **Deduction:** This scenario is perfectly symmetrical to Scenario B. The odd coin is either in {1, 2, 3, 4} and is **light**, or in {5, 6, 7, 8} and is **heavy**.
+* The exact same moves from Scenario B will solve the puzzle; the deductions are just reversed.
+    * **Let's follow one example path:** You perform the same second weighing: **{1, 2, 5}** vs **{3, 6, 9}**.
+    * Imagine the right side goes down again ({1, 2, 5} < {3, 6, 9}).
+        * **Deduction:** Remember, our suspects for this scenario are {1,2,3,4} (light) or {5,6,7,8} (heavy). This result could only happen if **#5 is heavy** or if **#1 or #2 is light**.
+        * **Weighing #3:** Weigh **#1** against **#2**. If they balance, **#5** is the odd coin and is **heavy**. If one coin goes up, that is the **light** coin. **Problem solved.**
