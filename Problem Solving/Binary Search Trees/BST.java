@@ -6,10 +6,11 @@ public class BST<Key extends Comparable<Key>, Value> {
     Value val;
     Node left;
     Node right;
-
+    int N; // No. of nodes in subtree rooted here
     Node(Key key, Value val) {
       this.key = key;
       this.val = val;
+      this.N = 1;
     }
   }
 
@@ -21,6 +22,17 @@ public class BST<Key extends Comparable<Key>, Value> {
         x = x.left;
     }
     return x.key;
+  }
+
+  //Function to delete the min
+  public void delMin() {
+    root = delMin(root);
+  }  
+  
+  private Node delMin(Node x) {
+    if (x.left == null) return x.right;
+    x.left = delMin(x.left);
+    return x; 
   }
 
   // Max key
@@ -72,12 +84,25 @@ public class BST<Key extends Comparable<Key>, Value> {
   }
 
   public int rank(Key key) {
-    return 0;
+    Value v = get(key);
+    if (v == null) return -1;
+    return rank(root, key);
+  }
+  
+  private int rank(Node x, Key k) {
+    int cmp = k.compareTo(x.key);
+    if (cmp == 0) return sizeof(x.left);
+    if (cmp < 0) return rank(x.left, k);
+    return 1 + sizeof(x.left) + rank(x.right, k);
   }
 
   // Get method
   public Value get(Key key) {
     return get(root, key);
+  }
+
+  private int sizeof(Node x) {
+    return x == null ? 0 : x.N;
   }
   
   private Value get(Node x, Key key) {
@@ -103,6 +128,7 @@ public class BST<Key extends Comparable<Key>, Value> {
     if (cmp == 0) x.val = val; //overrite the key
     else if (cmp < 0) x.left = put(x.left, key, val);
     else x.right = put(x.right, key, val);
+    x.N += sizeof(x.left) + sizeof(x.right);
     return x;
   }
 
@@ -123,6 +149,5 @@ public class BST<Key extends Comparable<Key>, Value> {
     assert bst.get(10) == null : "Test failed for key 10 , key missing";
     
     System.out.println("All test cases passed successfully");
-    
   }
 }
